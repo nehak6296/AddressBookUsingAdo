@@ -38,7 +38,7 @@ namespace AddressBookSystem
 
             if (repo.AddContact(model))
                 Console.WriteLine("Records added successfully");
-        }
+        }       
 
         public void EditContact()
         {
@@ -87,6 +87,16 @@ namespace AddressBookSystem
             }
 
             repo.Edit(model);
+        }
+        public void DeleteContact()
+        {
+            Console.WriteLine("Enter Name To Delete : ");
+            Console.WriteLine("Enter First Name :");
+            string firstName = Console.ReadLine();
+            Console.WriteLine("Enter Last Name :");
+            string lastName = Console.ReadLine();
+
+            repo.Delete(firstName,lastName);        
         }
     }
  }

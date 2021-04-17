@@ -90,6 +90,39 @@ namespace AddressBookSystem
 
         }
 
+        public void Delete(string firstName, string lastName)
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                string query = @"delete from Contacts where First_name =@firstName and Last_name=@lastName";
+                using (connection)
+                {
+                    SqlCommand cmd = new SqlCommand(query, connection);
+
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
+
+                    connection.Open();
+                    var result = cmd.ExecuteNonQuery();
+                    if(result != 0)
+                    {
+                        Console.WriteLine("Contact Deleted...");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Contact Not Found...");
+                    }
+                    connection.Close();
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                connection.Close()
+;            }
+        }
+
         public void Edit(AddressBookModel model)
         {
             try

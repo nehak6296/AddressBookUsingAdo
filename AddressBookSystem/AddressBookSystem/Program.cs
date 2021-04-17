@@ -15,9 +15,9 @@ namespace AddressBookSystem
             Console.WriteLine("Enter Your Choice : ");
             string choice = "";
             
-            while (choice != "3")
+            while (choice != "4")
             {
-                Console.WriteLine("1.Add Contact \n 2.Edit Contact \n  3.Exit");
+                Console.WriteLine("1.Add Contact \n 2.Edit Contact \n 3.Delete Contact \n 4.Exit");
                 choice = Console.ReadLine();
                 switch (choice)
                 {
@@ -26,7 +26,9 @@ namespace AddressBookSystem
                         break;
                     case "2":addressBook.EditContact();
                         break;
-                    case "3":
+                    case "3":addressBook.DeleteContact();
+                        break;
+                    case "4":
                         break;
                     default:
                         Console.WriteLine("Invalid Choice.....");
