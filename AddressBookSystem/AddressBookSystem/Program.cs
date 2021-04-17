@@ -10,7 +10,17 @@ namespace AddressBookSystem
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome To AddressBook System Using ADO .NET..");
+            AddressBookModel model = new AddressBookModel();
+
+            model.First_name = "Neha";
+            model.Last_name = "Kotarwar";
+            model.Address = "Ravi Nagar";
+            model.City = "Karanja";
+            model.State = "Maharashtra";
+            model.Zip = 444105;
+            model.Phone_number = "7768965972";
+            model.Email = "nehak6296@gmail.com";
+            
         }
     }
 }
