@@ -10,16 +10,25 @@ namespace AddressBookSystem
     {
         static void Main(string[] args)
         {
-            AddressBookModel model = new AddressBookModel();
-
-            model.First_name = "Neha";
-            model.Last_name = "Kotarwar";
-            model.Address = "Ravi Nagar";
-            model.City = "Karanja";
-            model.State = "Maharashtra";
-            model.Zip = 444105;
-            model.Phone_number = "7768965972";
-            model.Email = "nehak6296@gmail.com";
+             AddressBook addressBook = new AddressBook();
+            
+            Console.WriteLine("Enter Your Choice : ");
+            string choice = "";
+            
+            while (choice != "2")
+            {
+                Console.WriteLine("1.Add Contact \n 2.Exit");
+                choice = Console.ReadLine();
+                switch (choice)
+                {
+                    case "1":
+                        addressBook.AddNewContact();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Choice.....");
+                        break;
+                }
+            }
             
         }
     }
