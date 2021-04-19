@@ -30,6 +30,8 @@ namespace AddressBookSystem
                     command.Parameters.AddWithValue("@Zip", model.Zip);
                     command.Parameters.AddWithValue("@Phone_number", model.Phone_number);
                     command.Parameters.AddWithValue("@Email", model.Email);
+                    command.Parameters.AddWithValue("@AddressBookName", model.AddressBookName);
+                    
                     this.connection.Open();
                     var result = command.ExecuteNonQuery();
                     this.connection.Close();

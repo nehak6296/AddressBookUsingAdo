@@ -8,6 +8,7 @@ namespace AddressBookSystem
 {
     public class AddressBookModel
     {
+        public string AddressBookName { get; set; }
         public string First_name { get; set; }
         public string Last_name { get; set; }
         public string Address { get; set; }

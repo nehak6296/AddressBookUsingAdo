@@ -14,7 +14,6 @@ namespace AddressBookSystem
             
             Console.WriteLine("Enter Your Choice : ");
             string choice = "";
-            
             while (choice != "4")
             {
                 Console.WriteLine("1.Add Contact \n 2.Edit Contact \n 3.Delete Contact \n 4.Exit");

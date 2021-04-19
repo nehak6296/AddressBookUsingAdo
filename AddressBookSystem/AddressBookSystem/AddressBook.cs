@@ -12,6 +12,9 @@ namespace AddressBookSystem
         AddressBookRepo repo = new AddressBookRepo();
         public void AddNewContact()
         {
+            Console.WriteLine("Enter Address Book Name : ");
+            model.AddressBookName = Console.ReadLine();
+
             Console.WriteLine("Enter First Name : ");
             model.First_name = Console.ReadLine();
 
@@ -87,6 +90,7 @@ namespace AddressBookSystem
             }
 
             repo.Edit(model);
+            Console.WriteLine("Contact Edited Sucessfully......");
         }
         public void DeleteContact()
         {
