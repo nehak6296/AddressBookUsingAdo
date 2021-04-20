@@ -13,9 +13,9 @@ namespace AddressBookSystem
             AddressBook addressBook = new AddressBook();
             Console.WriteLine("Enter Your Choice : ");
             string preference = "";
-            while (preference != "3")
+            while (preference != "4")
             {
-                Console.WriteLine("1.Add New Address Book \n 2.Select existing Address Book \n 3.Exit");
+                Console.WriteLine("1.Add New Address Book \n 2.Select existing Address Book \n3.Search Person In city or state\n 4.Exit");
                 preference = Console.ReadLine();
                 switch (preference)
                 {
@@ -30,7 +30,9 @@ namespace AddressBookSystem
                         else
                             Console.WriteLine("AddressBook don't exist..");
                         break;
-                    case "3":
+                    case "3":addressBook.SearchContacts();
+                        break;
+                    case "4":
                         break;
                     default:
                         break;

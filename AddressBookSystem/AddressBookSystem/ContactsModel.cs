@@ -17,5 +17,10 @@ namespace AddressBookSystem
         public int Zip { get; set; }
         public string Phone_number { get; set; }
         public string Email { get; set; }
+        public override string ToString()
+        {
+            return AddressBookName+" "+First_name + " " + Last_name + " " + Address + " " + City + " " + State + " " + Zip + " " + Phone_number + " " + Email + " ";
+        }
     }
+    
 }

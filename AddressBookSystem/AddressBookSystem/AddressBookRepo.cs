@@ -56,6 +56,51 @@ namespace AddressBookSystem
             return false;
         }
 
+        public List<ContactsModel> SearchInCityOrState(string Input)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            List<ContactsModel> contactsList = new List<ContactsModel>();
+            try
+            {
+                using (connection)
+                {
+                    string query = @"select * from Contacts where City =@Input or State=@Input";
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@Input", Input);
+                    connection.Open();
+                    
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while(reader.Read())
+                    {
+                        ContactsModel contactsModel = new ContactsModel();
+                        contactsModel.First_name = reader["First_name"].ToString();
+                        contactsModel.Last_name = reader["Last_name"].ToString();
+                        contactsModel.City = reader["City"].ToString();
+                        contactsModel.Address = reader["Address"].ToString();
+                        contactsModel.State = reader["State"].ToString();
+                        contactsModel.Zip = Convert.ToInt32(reader["Zip"]);
+                        contactsModel.Phone_number = reader["Phone_number"].ToString();
+                        contactsModel.Email = reader["Email"].ToString();
+                        contactsModel.AddressBookName = reader["AddressBookName"].ToString();
+                        contactsList.Add(contactsModel);
+                    }                  
+
+                    connection.Close();
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return contactsList;
+            
+        }
+
         public bool GetAddressBook(string BookName)
         {
             SqlConnection connection = new SqlConnection(connectionString);
