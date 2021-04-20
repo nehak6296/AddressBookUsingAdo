@@ -45,7 +45,25 @@ namespace AddressBookSystem
                 Console.WriteLine("************Contact Already exist************");
         }
 
-        public void SearchContacts()
+        public void GetCountByCityOrState()
+        {
+            Console.WriteLine("Enter City Or State:");
+            string Input = Console.ReadLine();
+            List<ContactsModel> contactsList = repo.SearchInCityOrState(Input);
+            
+            if (contactsList.Count > 0)
+            {
+                Console.WriteLine("Number of contacts in " + Input + " :" + contactsList.Count);
+            }
+            else
+            {
+                Console.WriteLine("________Contact doesn't exist______\n");
+            }
+
+
+            }
+
+            public void SearchContacts()
         {
             Console.WriteLine("Enter City Or State:");
             string Input = Console.ReadLine();
