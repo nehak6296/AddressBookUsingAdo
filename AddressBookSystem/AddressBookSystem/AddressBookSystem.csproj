@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressBook.cs" />
-    <Compile Include="AddressBookModel.cs" />
+    <Compile Include="ContactsModel.cs" />
     <Compile Include="AddressBookRepo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

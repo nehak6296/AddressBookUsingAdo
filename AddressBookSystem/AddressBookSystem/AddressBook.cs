@@ -8,40 +8,58 @@ namespace AddressBookSystem
 {
     class AddressBook
     {
-        AddressBookModel model = new AddressBookModel();
+        ContactsModel contactsModel = new ContactsModel();
         AddressBookRepo repo = new AddressBookRepo();
+        string addressBookName;
         public void AddNewContact()
-        {
-            Console.WriteLine("Enter Address Book Name : ");
-            model.AddressBookName = Console.ReadLine();
+        {            
+            contactsModel.AddressBookName = this.addressBookName;
 
             Console.WriteLine("Enter First Name : ");
-            model.First_name = Console.ReadLine();
+            contactsModel.First_name = Console.ReadLine();
 
             Console.WriteLine("Enter Last Name : ");
-            model.Last_name = Console.ReadLine();
+            contactsModel.Last_name = Console.ReadLine();
 
             Console.WriteLine("Enter Address : ");
-            model.Address = Console.ReadLine();
+            contactsModel.Address = Console.ReadLine();
 
             Console.WriteLine("Enter City : ");
-            model.City = Console.ReadLine();
+            contactsModel.City = Console.ReadLine();
 
             Console.WriteLine("Enter State : ");
-            model.State = Console.ReadLine();
+            contactsModel.State = Console.ReadLine();
 
             Console.WriteLine("Enter Zip : ");
-            model.Zip = Convert.ToInt32(Console.ReadLine());
+            contactsModel.Zip = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Enter Phone Number");
-            model.Phone_number = Console.ReadLine();
+            contactsModel.Phone_number = Console.ReadLine();
 
             Console.WriteLine("Enter Email : ");
-            model.Email = Console.ReadLine();
+            contactsModel.Email = Console.ReadLine();
 
-            if (repo.AddContact(model))
+            if (repo.AddContact(contactsModel))
                 Console.WriteLine("Records added successfully");
-        }       
+        }
+
+        public bool IsExist()
+        {
+            Console.WriteLine("Enter Existing Address Book Name :");
+            this.addressBookName = Console.ReadLine();
+            if (repo.GetAddressBook(addressBookName))
+            {
+                return true;
+            }
+            else return false;
+        }
+
+        public void CreateNewAddressBook()
+        {
+            Console.WriteLine("Enter Address Book Name : ");
+             this.addressBookName = Console.ReadLine();
+            repo.AddAddressBook(addressBookName);
+        }
 
         public void EditContact()
         {
@@ -50,7 +68,7 @@ namespace AddressBookSystem
             Console.WriteLine("Enter Last Name:  ");
             string lastName = Console.ReadLine();
 
-            AddressBookModel model = repo.Read(firstName, lastName);
+            ContactsModel contactsModel = repo.Read(firstName, lastName);
 
             Console.WriteLine(" What you want to Edit ? ");
             Console.WriteLine("Enter your Choice : ");
@@ -62,34 +80,34 @@ namespace AddressBookSystem
             {                    
                     case "1":
                     Console.WriteLine("Enter new Address:");
-                    model.Address = Console.ReadLine();
+                    contactsModel.Address = Console.ReadLine();
                     break;
                     case "2":
                     Console.WriteLine("Enter new City:");
-                    model.City = Console.ReadLine();
+                    contactsModel.City = Console.ReadLine();
                     break;
                     case "3":
                     Console.WriteLine("Enter new State:");
-                    model.State = Console.ReadLine();
+                    contactsModel.State = Console.ReadLine();
                     break;
                     case "4":
                     Console.WriteLine("Enter new Zip:");
-                    model.Zip = Convert.ToInt32(Console.ReadLine());
+                    contactsModel.Zip = Convert.ToInt32(Console.ReadLine());
                     break;
                     case "5":
                     Console.WriteLine("Enter new Phone Number:");
-                    model.Phone_number = Console.ReadLine();
+                    contactsModel.Phone_number = Console.ReadLine();
                     break;
                     case "6":
                     Console.WriteLine("Enter new Email:");
-                    model.Email = Console.ReadLine();
+                    contactsModel.Email = Console.ReadLine();
                     break;
                     default:
                     Console.WriteLine("Invalid Choice.....");
                             break;
             }
 
-            repo.Edit(model);
+            repo.Edit(contactsModel);
             Console.WriteLine("Contact Edited Sucessfully......");
         }
         public void DeleteContact()

@@ -10,8 +10,39 @@ namespace AddressBookSystem
     {
         static void Main(string[] args)
         {
-             AddressBook addressBook = new AddressBook();
-            
+            AddressBook addressBook = new AddressBook();
+            Console.WriteLine("Enter Your Choice : ");
+            string preference = "";
+            while (preference != "3")
+            {
+                Console.WriteLine("1.Add New Address Book \n 2.Select existing Address Book \n 3.Exit");
+                preference = Console.ReadLine();
+                switch (preference)
+                {
+                    case "1":
+                        addressBook.CreateNewAddressBook();
+                        RunAddressBook(addressBook);
+                        break;
+                    case "2":
+                        bool result = addressBook.IsExist();
+                        if (result)
+                            RunAddressBook(addressBook);
+                        else
+                            Console.WriteLine("AddressBook don't exist..");
+                        break;
+                    case "3":
+                        break;
+                    default:
+                        break;
+
+                }
+            }
+
+        }
+
+        public static void RunAddressBook(AddressBook addressBook)
+            {
+            //AddressBook addressBook = new AddressBook();
             Console.WriteLine("Enter Your Choice : ");
             string choice = "";
             while (choice != "4")
@@ -23,9 +54,11 @@ namespace AddressBookSystem
                     case "1":
                         addressBook.AddNewContact();
                         break;
-                    case "2":addressBook.EditContact();
+                    case "2":
+                        addressBook.EditContact();
                         break;
-                    case "3":addressBook.DeleteContact();
+                    case "3":
+                        addressBook.DeleteContact();
                         break;
                     case "4":
                         break;
@@ -34,7 +67,7 @@ namespace AddressBookSystem
                         break;
                 }
             }
-            
         }
     }
+
 }
