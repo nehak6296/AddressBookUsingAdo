@@ -37,7 +37,7 @@ namespace AddressBookSystem
                     connection.Open();
                     var result = command.ExecuteNonQuery();
                     connection.Close();
-                    if (result != 0)
+                    if (result > 0)
                     {
                         return true;
                     }

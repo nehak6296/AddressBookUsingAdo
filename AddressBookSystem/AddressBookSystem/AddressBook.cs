@@ -40,9 +40,11 @@ namespace AddressBookSystem
             contactsModel.Email = Console.ReadLine();
 
             if (repo.AddContact(contactsModel))
-                Console.WriteLine("Records added successfully");
+                Console.WriteLine("Contact added successfully");
+            else
+                Console.WriteLine("************Contact Already exist************");
         }
-
+       
         public bool IsExist()
         {
             Console.WriteLine("Enter Existing Address Book Name :");
