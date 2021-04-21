@@ -44,7 +44,6 @@ namespace AddressBookSystem
             else
                 Console.WriteLine("************Contact Already exist************");
         }
-
         public void GetCountByCityOrState()
         {
             Console.WriteLine("Enter City Or State:");

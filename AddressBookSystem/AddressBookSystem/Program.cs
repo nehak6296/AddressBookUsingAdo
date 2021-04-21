@@ -13,9 +13,9 @@ namespace AddressBookSystem
             AddressBook addressBook = new AddressBook();
             Console.WriteLine("Enter Your Choice : ");
             string preference = "";
-            while (preference != "5")
+            while (preference != "6")
             {
-                Console.WriteLine(" 1.Add New Address Book \n 2.Select existing Address Book \n 3.Search Person In city or state \n 4.Count By City Or State \n 5.Exit");
+                Console.WriteLine(" 1.Add New Address Book \n 2.Select existing Address Book \n 3.Search Person In city or state \n 4.Count By City Or State \n 5.Sort AddressBook by FirstName \n 6.Exit");
                 preference = Console.ReadLine();
                 switch (preference)
                 {
@@ -34,7 +34,10 @@ namespace AddressBookSystem
                         break;
                     case "4":addressBook.GetCountByCityOrState();
                         break;
-                    case "5":
+                    case "5":AddressBookRepo repo = new AddressBookRepo();
+                            repo.SortByFirstName();
+                        break;
+                    case "6":
                         break;
                     default:
                         break;

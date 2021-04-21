@@ -56,6 +56,46 @@ namespace AddressBookSystem
             return false;
         }
 
+        public void SortByFirstName()
+        {
+            ContactsModel contactsModel = new ContactsModel();
+            SqlConnection connection = new SqlConnection(connectionString);            
+            try
+            {
+                using (connection)
+                {
+                    string query = @"select * from Contacts order by First_name";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        
+                        contactsModel.First_name = reader["First_name"].ToString();
+                        contactsModel.Last_name = reader["Last_name"].ToString();
+                        contactsModel.City = reader["City"].ToString();
+                        contactsModel.Address = reader["Address"].ToString();
+                        contactsModel.State = reader["State"].ToString();
+                        contactsModel.Zip = Convert.ToInt32(reader["Zip"]);
+                        contactsModel.Phone_number = reader["Phone_number"].ToString();
+                        contactsModel.Email = reader["Email"].ToString();
+                        contactsModel.AddressBookName = reader["AddressBookName"].ToString();
+                        Console.WriteLine("FirstName:-"+contactsModel.First_name+" "+"LastName:-"+contactsModel.Last_name+" "+"AddressBookName:-"+ contactsModel.AddressBookName);
+
+                    }                   
+                    connection.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }            
+        }
+
         public List<ContactsModel> SearchInCityOrState(string Input)
         {
             SqlConnection connection = new SqlConnection(connectionString);
