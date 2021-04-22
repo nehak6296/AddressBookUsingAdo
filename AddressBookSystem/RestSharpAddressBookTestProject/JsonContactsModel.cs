@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RestSharpAddressBookTestProject
-{
-    class JsonContactsModel
+{    
+    public class JsonContactsModel
     {
         public int id { get; set; }
         public string AddressBookName { get; set; }
@@ -18,5 +18,6 @@ namespace RestSharpAddressBookTestProject
         public string Zip { get; set; }
         public string Phone_number { get; set; }
         public string Email { get; set; }
+
     }
 }
