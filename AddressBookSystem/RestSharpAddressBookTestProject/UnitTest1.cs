@@ -1,6 +1,7 @@
 ﻿using AddressBookSystem;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,23 @@ namespace RestSharpAddressBookTestProject
             {
                 System.Console.WriteLine( "First Name: " + item.First_name +"\t" +"Last Name: " + item.Last_name);
             }
+        }
+        [TestMethod]
+        public void givenContacts_OnPost_ShouldReturnAddedContacts()
+        {
+            RestRequest request = new RestRequest("/Contacts", Method.POST);
+            JObject jObjectbody = new JObject();
+            jObjectbody.Add("First_name", "Clark");
+            jObjectbody.Add("Last_name", "Dsoza");
+            request.AddParameter("application/json", jObjectbody, ParameterType.RequestBody);
+
+            //act
+            IRestResponse response = client.Execute(request);
+            Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.Created);
+            ContactsModel dataResponse = JsonConvert.DeserializeObject<ContactsModel>(response.Content);
+            Assert.AreEqual("Clark", dataResponse.First_name);
+            Assert.AreEqual("Dsoza", dataResponse.Last_name);
+
         }
     }
 }
