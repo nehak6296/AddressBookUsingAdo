@@ -39,10 +39,10 @@ namespace RestSharpAddressBookTestProject
             Assert.AreEqual(8, dataResponse.Count);
             foreach (var item in dataResponse)
             {
-                System.Console.WriteLine( "First Name: " + item.First_name +"\t" +"Last Name: " + item.Last_name);
+                System.Console.WriteLine("First Name: " + item.First_name + "\t" + "Last Name: " + item.Last_name);
             }
         }
-<<<<<<< HEAD
+
         //UC23
         [TestMethod]
         public void givenContacts_OnPost_ShouldReturnAddedContacts()
@@ -58,7 +58,24 @@ namespace RestSharpAddressBookTestProject
             jObjectbody.Add("Phone_number", "9999979000");
             jObjectbody.Add("Email", "cdd@gmail.com");
             jObjectbody.Add("AddressBookName", "AddressBook1");
-=======
+            request.AddParameter("application/json", jObjectbody, ParameterType.RequestBody);
+
+            //act
+            IRestResponse response = client.Execute(request);
+
+            Assert.AreEqual(System.Net.HttpStatusCode.Created, response.StatusCode);
+            JsonContactsModel dataResponse = JsonConvert.DeserializeObject<JsonContactsModel>(response.Content);
+            Assert.AreEqual("Clark", dataResponse.First_name);
+            Assert.AreEqual("Dsoza", dataResponse.Last_name);
+            Assert.AreEqual("kj road", dataResponse.Address);
+            Assert.AreEqual("NY", dataResponse.City);
+            Assert.AreEqual("bst", dataResponse.State);
+            Assert.AreEqual("123445", dataResponse.Zip);
+            Assert.AreEqual("9999979000", dataResponse.Phone_number);
+            Assert.AreEqual("cdd@gmail.com", dataResponse.Email);
+            Assert.AreEqual("AddressBook1", dataResponse.AddressBookName);
+        }
+
         [TestMethod]
         public void givenContacts_OnPUT_ShouldReturnAddedContacts()
         {
@@ -71,28 +88,14 @@ namespace RestSharpAddressBookTestProject
             jObjectbody.Add("State", "telangana");
             jObjectbody.Add("Zip", "123445");
             jObjectbody.Add("Phone_number", "99999999000");
-            jObjectbody.Add("Email", "au@gmail.com");            
+            jObjectbody.Add("Email", "au@gmail.com");
             jObjectbody.Add("aaaa", "AddressBook1");
->>>>>>> UC24-UpdateEntryinJsonServer
+
             request.AddParameter("application/json", jObjectbody, ParameterType.RequestBody);
 
             //act
             IRestResponse response = client.Execute(request);
-<<<<<<< HEAD
-            Assert.AreEqual( System.Net.HttpStatusCode.Created, response.StatusCode);
-            JsonContactsModel dataResponse = JsonConvert.DeserializeObject<JsonContactsModel>(response.Content);
-            Assert.AreEqual("Clark", dataResponse.First_name);
-            Assert.AreEqual("Dsoza", dataResponse.Last_name);
-            Assert.AreEqual("kj road", dataResponse.Address);
-            Assert.AreEqual("NY", dataResponse.City);
-            Assert.AreEqual("bst", dataResponse.State);
-            Assert.AreEqual("123445", dataResponse.Zip);
-            Assert.AreEqual("9999979000", dataResponse.Phone_number);
-            Assert.AreEqual("cdd@gmail.com", dataResponse.Email);
-            Assert.AreEqual("AddressBook1", dataResponse.AddressBookName);
-
-=======
-            Assert.AreEqual( System.Net.HttpStatusCode.OK, response.StatusCode);
+            Assert.AreEqual(System.Net.HttpStatusCode.OK, response.StatusCode);
             JsonContactsModel dataResponse = JsonConvert.DeserializeObject<JsonContactsModel>(response.Content);
             Assert.AreEqual("Ansh", dataResponse.First_name);
             Assert.AreEqual("Usrete", dataResponse.Last_name);
@@ -102,8 +105,21 @@ namespace RestSharpAddressBookTestProject
             Assert.AreEqual("123445", dataResponse.Zip);
             Assert.AreEqual("99999999000", dataResponse.Phone_number);
             Assert.AreEqual("au@gmail.com", dataResponse.Email);
-            Console.WriteLine("Contact Updated successfully...");            
->>>>>>> UC24-UpdateEntryinJsonServer
+            Console.WriteLine("Contact Updated successfully...");
+
+        }
+        [TestMethod]
+        public void givenPersonId_OnDelete_ShouldReturnSuccessStatus()
+        {
+            //arrange
+            RestRequest request = new RestRequest("/Contacts/5", Method.DELETE);
+
+            //act
+            IRestResponse response = client.Execute(request);
+
+            //assert
+            Assert.AreEqual( System.Net.HttpStatusCode.OK, response.StatusCode);
+            System.Console.WriteLine(response.Content);
         }
     }
 }

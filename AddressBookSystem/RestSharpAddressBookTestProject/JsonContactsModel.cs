@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RestSharpAddressBookTestProject
-{    
+{
     public class JsonContactsModel
     {
         public int id { get; set; }
