@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +46,24 @@ namespace AddressBookSystem
             else
                 Console.WriteLine("************Contact Already exist************");
         }
+
+        public void GetContacts()
+        {
+            JsonModel jsonModel = new JsonModel();
+
+            List<ContactsModel> contactsList = repo.GetContacts();
+            jsonModel.Contacts = contactsList;
+            //var json = JsonConvert.SerializeObject(contactsList);
+            string file = @"C:\Users\Neha Kotarwar\Desktop\Problems\AddressBookUsingAdo\AddressBookSystem\AddressBookSystem\Output.json";
+            JsonSerializer serializer = new JsonSerializer();
+            using (StreamWriter sw = new StreamWriter(file))
+            using (JsonWriter writer = new JsonTextWriter(sw))
+            {
+                serializer.Serialize(writer, jsonModel);
+            }
+            Console.WriteLine("json........");
+        }
+
         public void GetCountByCityOrState()
         {
             Console.WriteLine("Enter City Or State:");
